@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="css/styles.css">
+        <script src="js/jquery-3.3.1.min.js"></script>
+        <script src="js/service.js"></script>
+        <script src="js/options.js"></script>
+    </head>
+    <body>
+        <div class="overlay">
+
+        </div>
+        <div class="session-form">
+            <div class="session-form-wrap">
+                <div class="hint-text">Session name</div>
+                <div class="input-wrap">
+                    <input type="text" class="session-name-input">
+                    <input type="submit" value="Save" class="session-submit">
+                </div>
+            </div>
+        </div>
+        <div class="wrap">
+            <div class="session-list">
+                <ul id="session-list-content">
+                                
+                </ul> 
+            </div>
+            <div class="tab-content">
+                <div class="session-header">
+                    <div class="session-detail">
+                        <div id="session-name"></div>
+                    </div>
+                    <div class="header-control">
+                        <div class="control-wrap clickable">
+                            <a href="#" class="tooltip">
+                                <img src="images/openIcon.png">
+                                <span class="tooltiptext">Open&nbsp;tabs</span>
+                            </a>
+                            <a href="#" class="tooltip">
+                                <img src="images/deleteIcon.png">
+                                <span class="tooltiptext">Delete&nbsp;session</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div id="session-time"></div>
+                <div class="tab-header clickable">
+                    <h2>Tabs</h2>
+                    <a href="#" class="tooltip" id="edit-save">
+                        <img src="images/editIcon.png">
+                        <span class="tooltiptext">Edit</span>
+                    </a>
+                </div>
+                
+                <div class="tab-list">
+                    
+                </div>
+            </div>
+        </div>
+        <img src="images/plus.png" id="add-btn">
+    </body>
+</html>
