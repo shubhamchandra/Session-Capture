@@ -3,10 +3,11 @@ $(document).ready(() => {
     init();
     $('#save').prop('disabled', true);
     $('#sessionName').keyup(function() {
-        if($(this).val() != '')
+        if($(this).val() != '') 
             $('#save').prop('disabled', false);
         else 
             $('#save').prop('disabled', true);
+        
     });
     $('#save').click(() => {
         createSession($('#sessionName').val());

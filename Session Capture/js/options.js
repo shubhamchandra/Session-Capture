@@ -4,6 +4,7 @@ $(document).ready(() => {
     var curTabs = [];
     var allowEdit = true;
     var addSession = false;
+    var deleteSessionClicked = false;
     var submitEnabled = false;
 
     chrome.storage.local.get(['SessionCapture_Sessions'], (obj) => {
@@ -41,6 +42,7 @@ $(document).ready(() => {
         var date = getDateFromTimeStamp(session.date);
         $('.tab-content #session-time').text("Created " + date);
         activeSession = session;
+        console.log("activeSession set to", activeSession);
         getTabs(session.id).then((tabs) => {
             console.log("tabs", tabs);
             curTabs = tabs;
@@ -90,13 +92,21 @@ $(document).ready(() => {
     $('#edit-save').click(invertEdit);
 
     addBtnHandler = () => {
+        if(deleteSessionClicked) {
+            $('.overlay').hide();
+            $('.session-form').hide();
+            $('#add-btn').css('transform', 'rotate(1turn)');
+            deleteSessionClicked = false;
+            return;
+        }
         addSession = !addSession;
         disableSubmit();
         $('.session-name-input').val('');
         if(addSession) {
             $('.overlay').show();
-            $('.session-form').show();
+            $('.session-form.create').show();
             $('#add-btn').css('transform', 'rotate(.125turn)');
+            $('.session-name-input').focus();
         } else {
             $('.overlay').hide();
             $('.session-form').hide();
@@ -106,28 +116,33 @@ $(document).ready(() => {
 
     $('#add-btn').click(addBtnHandler);
 
+    $('#open-tabs-btn').click(() => {
+        $.each(curTabs, (idx, tab) => {
+            chrome.tabs.create({'url': tab.url});
+        });
+    });
+
     disableSubmit = () => {
         submitEnabled = false;
-        $('.session-submit').css({'background': '#7d91ab', 'cursor' : 'default'});
-        $('.session-submit').hover(() => {
-            $('.session-submit').css({'background' : '#7d91ab', 'color' : '#b7c5c8'});
+        $('.create .session-submit').css({'background': '#7d91ab', 'cursor' : 'default'});
+        $('.create .session-submit').hover(() => {
+            $('.create .session-submit').css({'background' : '#7d91ab', 'color' : '#b7c5c8'});
         });
     } 
 
     enableSubmit = () => {
         submitEnabled = true;
-        $('.session-submit').css({'background': '#39424e', 'cursor' : 'pointer'});
-        $('.session-submit').hover(() => {
-            $('.session-submit').css({'background': '#5b697c', 'color' : '#c3d1d4'});
+        $('.create .session-submit').css({'background': '#39424e', 'cursor' : 'pointer'});
+        $('.create .session-submit').hover(() => {
+            $('.create .session-submit').css({'background': '#5b697c', 'color' : '#c3d1d4'});
         },
         () => {
-            $('.session-submit').css({'background': '#39424e', 'color' : '#b7c5c8'});
+            $('.create .session-submit').css({'background': '#39424e', 'color' : '#b7c5c8'});
         }
         );
     }
 
     $('.session-name-input').keyup(() => {
-        console.log("heyup");
         if($('.session-name-input').val() == '')
             disableSubmit();
         else 
@@ -135,7 +150,7 @@ $(document).ready(() => {
     });
 
     displaySession = (session) => {
-        console.log(session);
+        console.log("Display " ,session);
         if(session.id == activeSession.id)
             return;
         activeSession = session;
@@ -160,6 +175,33 @@ $(document).ready(() => {
             displaySession(session);
         });
     }
+
+    deleteSession = () => {
+        for(var i = 0; i < sessions.length; i++) {
+            if(sessions[i].id == activeSession.id) {
+                chrome.storage.local.remove(["SessionCapture_Tabs" + sessions[i].id]);
+                console.log("session to be deleted", sessions[i]);
+                sessions.splice(i, 1);
+                $('#session-list-content li.active').remove();
+                $('#session-list-content li:nth-child(1)').addClass('active');
+                break;
+            }
+        }
+        displaySession(sessions[0]);
+        chrome.storage.local.set({ "SessionCapture_Sessions" : sessions});
+        addBtnHandler();
+    }
+
+    deleteSessionForm = () => {
+        $('.overlay').show();
+        $('.session-form.delete').show();
+        $('#add-btn').css('transform', 'rotate(.125turn)');
+        deleteSessionClicked = true;
+    }
+
+    $('#delete-session-btn').click(deleteSessionForm);  
+
+    $('.delete .session-submit').click(deleteSession);
 
     $('.session-submit').click(() => {
         if(!submitEnabled) return;
