@@ -1,6 +1,8 @@
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="css/styles.css">
+        <title>Session Capture</title>
+        <link rel="stylesheet" type="text/css" href="css/options.css">
+        <link rel="icon" href="images/icon.png" type="image/png" sizes="20x20">
         <script src="js/jquery-3.3.1.min.js"></script>
         <script src="js/service.js"></script>
         <script src="js/options.js"></script>
@@ -9,12 +11,20 @@
         <div class="overlay">
 
         </div>
-        <div class="session-form">
+        <div class="session-form create">
             <div class="session-form-wrap">
                 <div class="hint-text">Session name</div>
                 <div class="input-wrap">
                     <input type="text" class="session-name-input">
                     <input type="submit" value="Save" class="session-submit">
+                </div>
+            </div>
+        </div>
+        <div class="session-form delete">
+            <div class="session-form-wrap">
+                <div class="delete-text">Are you sure you want to delete this?</div>
+                <div class="input-wrap">
+                    <input type="submit" value="Yes" class="session-submit">
                 </div>
             </div>
         </div>
@@ -31,11 +41,11 @@
                     </div>
                     <div class="header-control">
                         <div class="control-wrap clickable">
-                            <a href="#" class="tooltip">
+                            <a id="open-tabs-btn" href="#" class="tooltip">
                                 <img src="images/openIcon.png">
                                 <span class="tooltiptext">Open&nbsp;tabs</span>
                             </a>
-                            <a href="#" class="tooltip">
+                            <a id="delete-session-btn" href="#" class="tooltip">
                                 <img src="images/deleteIcon.png">
                                 <span class="tooltiptext">Delete&nbsp;session</span>
                             </a>
