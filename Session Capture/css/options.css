@@ -1,0 +1,340 @@
+@font-face {
+    font-family: openSansBold;
+    src: url(/fonts/OpenSans-Bold.ttf);
+}
+@font-face {
+    font-family: openSansItalic;
+    src: url(/fonts/OpenSans-Italic.ttf);
+}
+@font-face {
+    font-family: openSansLight;
+    src: url(/fonts/OpenSans-Light.ttf);
+}
+@font-face {
+    font-family: openSansRegular;
+    src: url(/fonts/OpenSans-Regular.ttf);
+}
+@font-face {
+    font-family: openSansSemiBold;
+    src: url(/fonts/OpenSans-Semibold.ttf);
+}
+@font-face {
+    font-family: openSansSemiBoldItalic;
+    src: url(/fonts/OpenSans-SemiboldItalic.ttf);
+}
+::selection { background: #2f8e599c; }
+body {
+    margin: 0;
+    font-family: 'openSansRegular';
+}
+.wrap {
+    width: 100%;
+    height: 100%;
+}
+.session-list {
+    width: 20%;
+    float: left;
+    height: 100%;
+    background: #e4e4e4;
+}
+.session-list .session-title {
+    font-size: 20px;
+    font-family: 'openSansSemiBold';
+}
+.session-list .session-date {
+    font-size: 14px;
+    font-family: 'openSansRegular'
+}
+#session-list-content {
+    padding: 0;
+    margin: 0;
+}
+.session-list li {
+    display: block;
+    padding: 10px;
+}
+.session-list li:hover {
+    cursor: pointer;
+    background: #c6d4c58c;
+}
+.session-list li.active {
+    background: #2fb15d;
+}
+.session-list li.active .session-date {
+    color: #f0f8ff;
+}
+.session-list li div {
+    width: 80%;
+    margin: 2px auto;
+}
+.tab-content {
+    float: left;
+    width: 80%;
+    height: 100%;
+}
+.session-header {
+    width: 96%;
+    border-bottom: 1px solid #e4e4e4;
+    height: 70px;
+    margin: 1% 2%;
+}
+.session-header .session-detail {
+    width: 80%;
+    float: left;
+    height: 100%;
+}
+.session-header .session-detail #session-name {
+    color: #202124;
+    font-family: 'openSansBold';
+    font-size: 50px;
+    height: 100%;
+    display: inline-block;
+    margin-right: 15px;
+}
+.tab-content #session-time {
+    display: block;
+    width: 96%;
+    margin: 1% 2%;
+    font-family: 'openSansRegular';
+    color: #5f6368;
+    font-size: 17px;
+}
+.session-header .header-control {
+    width: 20%;
+    float: left;
+    height: 100%;
+}
+.session-header .header-control .control-wrap {
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+    height: 100%;
+    align-items: center;
+}
+.tab-header {
+    width: 96%;
+    margin: 2% 2% 5px 2%;
+    display: table;
+}
+.tab-header h2 {
+    display: table-cell;
+    margin: 0;
+    width: 38px;
+    font-size: 17px;
+    vertical-align: middle;
+}
+.tab-header a {
+    margin-left: 5px;
+}
+.clickable a {
+    display: inline-block;
+    flex: 1;
+    border-radius: 30px;
+}
+.clickable a:hover {
+    background: #d6edde;
+}
+.clickable img {
+    width: 30px;
+    display: inline-block;
+    margin: 10px
+} 
+.tab-header img {
+    margin: 8px;
+    width: 17px;
+}
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: fit-content;
+    background-color: #5e615bab;
+    color: #fff;
+    text-align: center;
+    border-radius: 3px;
+    padding: 2px 10px;
+    display: block;
+    /* Position the tooltip */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -55%;
+    z-index: 1;
+    font-family: 'openSansRegular';
+    font-size: 11px;
+}
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+.wrap .session-list {
+    overflow-y: scroll;
+}
+.wrap .session-list::-webkit-scrollbar {
+    width: .7em;
+}
+ 
+.wrap .session-list::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+ 
+.wrap .session-list::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+  border-radius: 5px;
+}
+.tab-content .tab-list {
+    height: calc(67% - 70px);
+    overflow-y: scroll;
+    position: relative;
+    bottom: 0;
+    margin-left: 2%;
+}
+.tab-list-content {
+    padding: 0;
+}
+.tab-content .tab-list .tab-item {
+    display: block;
+    margin: 15px 0;
+}
+.tab-content .tab-list .tab-item:first-child {
+    margin-top: 0;
+}
+.tab-content .tab-list .tab-item a {
+    font-family: 'openSansRegular';
+    font-size: 14px;
+    text-decoration: none;
+    color: #202124;
+    vertical-align: middle;
+    margin-left: 8px;
+}
+.tab-content .tab-list .tab-item .x {
+    width: 17px;
+    height: 17px;
+    cursor: pointer;
+    position: absolute;
+}
+.tab-content .tab-list .tab-item a:hover {
+    color: #336f40;
+}
+.tab-content .tab-list .tab-item .favicon {
+    width: 17px;
+    height: 17px;
+    margin-left: 30px;
+}
+.tab-content .tab-list .tab-item img{
+    display: inline;
+    vertical-align: middle;
+}
+.tab-content .tab-list::-webkit-scrollbar {
+    width: .7em;
+}
+ 
+.tab-content .tab-list::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+ 
+.tab-content .tab-list::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+  border-radius: 5px;
+}
+.tab-header .edit-save {
+    width: 30px;
+    height: 30px;
+}
+.tab-header .tooltip .tooltiptext {
+    bottom: 20%;
+    margin-left: 45px;
+    min-width: unset;
+    width: fit-content;
+    padding: 2px 5px;
+    left: unset;
+    transform: none;
+}
+#add-btn {
+    width: 75px;
+    height: 75px;
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+    cursor: pointer;
+    z-index: 55;
+}
+.overlay {
+    position: fixed;
+    z-index: 2;
+    background: #5f6368;
+    opacity: .25;
+    height: 100%;
+    width: 100%;
+    display: none;
+}
+.session-form {
+    display: none;
+    position: absolute;
+    z-index: 2;
+    height: 130px;
+    width: 350px;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 10%;
+    box-shadow: 0 0 20px hsl(0, 0%, 26%);
+}
+.session-form.delete .delete-text {
+    font-family: openSansSemiBold;
+    font-size: 14px;
+    width: 75%;
+    float: left;
+}
+.session-form.delete .input-wrap {
+    width: 25%;
+    float: left;
+}
+.session-name-input, .session-submit {
+    position: relative;
+    
+    /*display: inline-block;*/
+}
+.session-submit:hover {
+    background: #5b697c;
+    color: #c3d1d4;
+}
+.session-name-input {
+    border: 2px solid #2fb15d;
+    border-radius: 3px;
+    width: 70%;
+    height: 25px;
+    font-family: 'openSansRegular';
+    font-size: 13px;
+}
+.session-name-input:focus, .session-submit:focus {
+    outline: none;
+}
+.session-submit {
+    background: #39424e;
+    color: #b7c5c8;
+    border: none;
+    width: 27%;
+    min-width: 80px;
+    height: 25px;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-left: 2px;
+    font-family: 'openSansBold';
+    font-size: 14px;
+}
+.hint-text {
+    font-family: 'openSansSemiBoldItalic';
+    font-size: 15px;
+}
+.session-form-wrap {
+    top: 50%;
+    transform: translateY(-50%);
+    position: absolute;
+    width: 350px;
+}
