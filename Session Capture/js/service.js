@@ -30,6 +30,7 @@ captureCurrentSession = (name) => {
         session.date = Date.now();
         session.id = SessionCount;
         session.name = name;
+        session.lastAccessed = Date.now();
         console.log("wtf", session);
         Sessions.unshift(session);
         chrome.storage.local.set({ "SessionCapture_Sessions" : Sessions});

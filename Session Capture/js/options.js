@@ -157,6 +157,16 @@ $(document).ready(() => {
         $('#session-list-content li.active').removeClass('active');
         $('#' + session.id).addClass('active');
         setupTabContent(session);
+        for(var i = 0; i < sessions.length; i++) {
+            if(sessions[i].id == session.id) {
+                sessions[i].lastAccessed = Date.now();
+                break;
+            }
+        }
+        sessions.sort((a, b) => {
+            return b.lastAccessed - a.lastAccessed; 
+        });
+        chrome.storage.local.set({"SessionCapture_Sessions" : sessions});
     }
 
     createSession = (sessionName) => {
