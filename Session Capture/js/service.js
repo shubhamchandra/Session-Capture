@@ -1,7 +1,9 @@
 var SessionCount = 0;
 var Sessions = [];
+var extensionId = null;
 
 init = () => {
+    extensionId = chrome.runtime.id;
     chrome.storage.local.get(["SessionCapture_Count", "SessionCapture_Sessions"], (obj) => {
         if(!obj.SessionCapture_Count)
             chrome.storage.local.set({"SessionCapture_Count" : 0});
@@ -40,7 +42,7 @@ captureCurrentSession = (name) => {
                 console.log("wtf", arrayOfTabs);
                 var tabId = "SessionCapture_Tabs" + SessionCount;
                 for(i = 0; i < arrayOfTabs.length; i++) {
-                    if(arrayOfTabs[i].url.indexOf("hikfmcfkcnaijpepnjnpckmbijgjnjif") != -1) 
+                    if(arrayOfTabs[i].url.indexOf(extensionId) != -1) 
                         arrayOfTabs.splice(i, 1);
                 }
                 chrome.storage.local.set({[tabId] : arrayOfTabs}, () => {
